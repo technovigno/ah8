@@ -74,7 +74,7 @@ def hello():
 
 if __name__ == "__main__":
 	app.debug = True
-	app.run(host="location", port=8080)
+	app.run(host="localhost", port=8080)
 
 
 
