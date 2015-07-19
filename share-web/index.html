@@ -141,14 +141,20 @@
   }
 
   function postUserJSONData(jsonData, entity) {
-    $.ajax({
-      data: jsonData,
-      type: 'POST',
-      url: 'http://li1184-50.members.linode.com:8081/api/load/' + entity,
-      dataType: 'json',
-      success: function(data){
-        console.log('json data: ' + jsonData + ' has been posted')
-      }
+    var settings = {
+       "async": true,
+       "crossDomain": true,
+       "url": "li1184-50.members.linode.com:8081/api/load/" + entity,
+       "method": "POST",
+       "headers": {
+          "content-type": "application/json"
+       },
+       "processData": false,
+       "data": jsonData
+    }
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
     });
   }
 </script>
