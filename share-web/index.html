@@ -130,7 +130,7 @@
 
     FB.api('/me', function(response) {
       entity = response.name.replace(" ",'.')
-      jsonData = '{ "name": "' + response.name + ' ", "email":"' + response.email + '" "location": "San Francisco, CA" }'
+      jsonData = '{ "name": "' + response.name + '", "email":"' + response.email + '", "location": "San Francisco, CA" }'
       postUserJSONData(jsonData, entity)
       console.log(response);
       console.log('Successful login for: ' + response.name);
