@@ -131,48 +131,6 @@
         'Welcome, ' + userinfo.name + '!';
     });
   }
-
-  $(document).ready(function () {
-    $('#createform').on('submit', function(e) {
-        e.preventDefault();
-        captureOutputAndSend();
-    });
-  });
-
-  function captureOutputAndSend(){
-    var index_sel1= document.getElementById('sel1').options.selectedIndex;
-    var index_sel2= document.getElementById('sel2').options.selectedIndex;
-    var index_sel3= document.getElementById('sel3').options.selectedIndex;
-    
-    var company = document.getElementById('sel1').options[index_sel1].text;
-    var role = document.getElementById('sel2').options[index_sel2].text;
-    var salary = document.getElementById('sel3').options[index_sel3].text;
-    var review_text = document.getElementById('comment').value;
-    var rating = $('input[name="optradio"]:checked').val();
-    
-    FB.api('/me', function(userinfo) {
-      jsonData = '{"user_id": "'+ userinfo.id +'", "comp_id": "' + company + '",  "location_id": "San Francisco, CA", "review_text": "' + review_text + '", "rating": "' + rating + '", "hour_earning": "' + salary + '", "role": "' + role + '" }';
-      postUserJSONData(jsonData);
-    });
-  }
-
-  function postUserJSONData(jsonData) {
-    var settings = {
-       "async": true,
-       "crossDomain": true,
-       "url": "http://li1184-50.members.linode.com:8081/api/load/ref",
-       "method": "POST",
-       "headers": {
-          "content-type": "application/json"
-       },
-       "processData": false,
-       "data": jsonData
-    }
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
-    });
-  }
 </script>
 
     <!-- Navigation -->
@@ -317,6 +275,50 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
+
+    <script>
+       $(document).ready(function () {
+        $('#createform').on('submit', function(e) {
+            e.preventDefault();
+            captureOutputAndSend();
+        });
+      });
+
+      function captureOutputAndSend(){
+        var index_sel1= document.getElementById('sel1').options.selectedIndex;
+        var index_sel2= document.getElementById('sel2').options.selectedIndex;
+        var index_sel3= document.getElementById('sel3').options.selectedIndex;
+        
+        var company = document.getElementById('sel1').options[index_sel1].text;
+        var role = document.getElementById('sel2').options[index_sel2].text;
+        var salary = document.getElementById('sel3').options[index_sel3].text;
+        var review_text = document.getElementById('comment').value;
+        var rating = $('input[name="optradio"]:checked').val();
+        
+        FB.api('/me', function(userinfo) {
+          jsonData = '{"user_id": "'+ userinfo.id +'", "comp_id": "' + company + '",  "location_id": "San Francisco, CA", "review_text": "' + review_text + '", "rating": "' + rating + '", "hour_earning": "' + salary + '", "role": "' + role + '" }';
+          postUserJSONData(jsonData);
+        });
+      }
+
+      function postUserJSONData(jsonData) {
+        var settings = {
+           "async": true,
+           "crossDomain": true,
+           "url": "http://li1184-50.members.linode.com:8081/api/load/ref",
+           "method": "POST",
+           "headers": {
+              "content-type": "application/json"
+           },
+           "processData": false,
+           "data": jsonData
+        }
+
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+        });
+      }
+    </script>
 
 </body>
 
