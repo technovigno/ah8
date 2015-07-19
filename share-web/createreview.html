@@ -173,30 +173,67 @@
                 <p>Thanks for taking the time to share your experience with the world :)</p>
                   <form class="form-horizontal" role="form">
                     <div class="form-group">
-                   
 
-                      <div class="form-group">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                          <li><a href="#">Uber</a></li>
-                          <li><a href="#">Airbnb</a></li>
-                          <li><a href="#">Lyft</a></li>
-                        </ul>
-                      </div>
-
-
-                
                     <div class="form-group">
-                      <label class="control-label col-sm-2" for="pwd">Password:</label>
+                      <label class="control-label col-sm-2" for="sel1">Company:</label>
+                       <div class="col-sm-10"> 
+                          <select class="form-control" id="sel1">
+                            <option>Select Company</option>
+                            <option>Airbnb</option>
+                            <option>Lyft</option>
+                            <option>Uber</option>
+                          </select>
+                         </div>  
+                    </div>  
+                    
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="sel1">Role:</label>
+                       <div class="col-sm-10"> 
+                          <select class="form-control" id="sel1">
+                            <option>Select Role</option>
+                            <option>Carpool Driver</option>
+                            <option>Package Delivery</option>
+                            <option>Food Livery</option>
+                            <option>Host</option>
+                          </select>
+                         </div>  
+                    </div>  
+
+                   <div class="form-group">
+                      <label class="control-label col-sm-2" for="sel1">Salary:</label>
+                       <div class="col-sm-10"> 
+                          <select class="form-control" id="sel1">
+                            <option>Select Salary Per Hour</option>
+                            <option>Less than $15</option>
+                            <option>$15-$25</option>
+                            <option>$25-$35</option>
+                            <option>$35-$45</option>
+                            <option>Greater than $45</option>
+                          </select>
+                         </div>  
+                    </div>  
+
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="pwd">Comments:</label>
                       <div class="col-sm-10"> 
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                          <textarea class="form-control" rows="5" id="comment" placeholder="Any information that would help others."></textarea>
                       </div>
                     </div>
-                
+
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="pwd">Rating:</label>
+                      <div class="col-sm-10"> 
+                        <label class="radio-inline"><input type="radio" name="optradio">Awesome company!</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Pretty good place</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Okay</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Meh</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Boo - go somewhere else!</label>
+                      </div>
+                    </div>  
+
                     <div class="form-group"> 
                       <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn-default">Submit</button>
                       </div>
                     </div>
                   </form>
