@@ -33,7 +33,7 @@ def insert_entity_data(entity_id):
 		entity_id = uuid.uuid4()
 	entity_id = str(entity_id).lower()
 	entity_id = entity_id.replace('_', ' ')
-	json_data = json.loads("{ entity_id: " + request.data + "}")
+	json_data = json.loads("{ \"entity_id\": " + request.data + "}")
 	print json_data
 	try:
 		con = clusterpoint_connect()
