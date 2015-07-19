@@ -28,6 +28,8 @@ def ret_json(json_data):
 # reviews - { 1: { 'user_id': 'tim@gmail.com', 'comp_id': 'Uber', 'location_id': 'San Francisco, CA', 'review_text': 'Awesome experience!', 'rating': 'love', 'hour_earning': '45' } }
 @app.route("/api/load/<entity_id>", methods=['POST'])
 def insert_entity_data(entity_id):
+	entity_id = str(entity_id).lower()
+	entity_id = entity_id.replace('_', ' ')
 	json_data = json.loads(request.data)
 	try:
 		con = clusterpoint_connect()
@@ -41,6 +43,8 @@ def insert_entity_data(entity_id):
 
 @app.route("/api/find/<entity_id>", methods=['GET'])
 def get_entity_data(entity_id):
+	entity_id = str(entity_id).lower()
+	entity_id = entity_id.replace('_', ' ')
 	try:
 		con = clusterpoint_connect()
 		response = con.retrieve(entity_id)
