@@ -146,8 +146,9 @@
       }
     }
 
-    $.ajax(settings).done(function (response) {
-      console.log(response);
+    $.ajax(settings).done(function (data) {
+      document.getElementById('myreviews').innerHTML =
+            'My Reviews (' + data.res.length + ')';
     });
 
   }
@@ -178,16 +179,20 @@
         </div>
         <!-- /.container -->
     </nav>
-                  
-    <header class="intro">
-        <div class="intro-body">
-    <!-- About Section -->
-    <section id="about" class="container content-section text-center">
+    <!-- Reviews Section -->
+    <section class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Reviews</h2>
+                <h2 id="myreviews"></h2>
+            </div>
+        </div>
+    </section>
+    <section id="myreviews" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2 id="allreviews">All Reviews</h2>
                 
-                <table class="table table-hover">
+                <table>
                     <thead>
                       <tr>
                         <th>Company</th>
@@ -225,7 +230,6 @@
             </div>
         </div>
     </div>
-    </header>   
     </section>
 
 
