@@ -18,7 +18,7 @@ def clusterpoint_connect():
 
 
 def ret_json(json_data):
-	return Response(response=json_data, status=200, mimetype="application/json")
+	return Response(response=jsonify(json_data), status=200, mimetype="application/json")
 
 # Entities being user, companies, locations and reviews
 # Sample jsons:
