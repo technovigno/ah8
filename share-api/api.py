@@ -57,8 +57,9 @@ def get_entity_data(entity_id):
 	except pycps.APIError as e:
 		print e
 	result = []
-	for iid, item in response.get_documents().items():
-		result.append(item)
+	if response.get_documents():
+		for iid, item in response.get_documents().items():
+			result.append(item)
 	json_r = jsonify(res=result)
 	return json_r
 
@@ -70,8 +71,9 @@ def get_location_reviews_ratings(location_id):
 		        offset=0, list = {})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
 	result = []
-	for iid, item in response.get_documents().items():
-		result.append(item)
+	if response.get_documents():
+		for iid, item in response.get_documents().items():
+			result.append(item)
 	json_r = jsonify(res=result)
 	return json_r
 
@@ -82,8 +84,9 @@ def get_company_reviews_ratings(comp_id):
 		          offset=0, list={})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
 	result = []
-	for iid, item in response.get_documents().items():
-		result.append(item)
+	if response.get_documents():
+		for iid, item in response.get_documents().items():
+			result.append(item)
 	json_r = jsonify(res=result)
 	return json_r
 
@@ -94,8 +97,9 @@ def get_user_reviews_ratings(user_id):
 		           offset=0, list={})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
 	result = []
-	for iid, item in response.get_documents().items():
-		result.append(item)
+	if response.get_documents():
+		for iid, item in response.get_documents().items():
+			result.append(item)
 	json_r = jsonify(res=result)
 	return json_r
 
