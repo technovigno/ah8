@@ -5,6 +5,7 @@ from flask import request
 from flask import jsonify
 import json
 import pycps
+import uuid
 
 app = Flask(__name__)
 
@@ -28,6 +29,8 @@ def ret_json(json_data):
 # reviews - { 1: { 'user_id': 'tim@gmail.com', 'comp_id': 'Uber', 'location_id': 'San Francisco, CA', 'review_text': 'Awesome experience!', 'rating': 'love', 'hour_earning': '45' } }
 @app.route("/api/load/<entity_id>", methods=['POST'])
 def insert_entity_data(entity_id):
+	if entity_id == 'ref':
+		entity_id = uuid.uuid4()
 	entity_id = str(entity_id).lower()
 	entity_id = entity_id.replace('_', ' ')
 	json_data = json.loads(request.data)
