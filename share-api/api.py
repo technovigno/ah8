@@ -51,7 +51,7 @@ def get_entity_data(entity_id):
 		result.append(item)
 	json_r = jsonify(res=result)
 	print json_r
-	return ret_json(json_r)
+	return json_r
 
 @app.route("/api/location/<location_id>", methods=['GET'])
 def get_location_reviews_ratings(location_id):
@@ -64,7 +64,7 @@ def get_location_reviews_ratings(location_id):
 		result.append(item)
 	json_r = jsonify(res=result)
 	print json_r
-	return ret_json(json_r)
+	return json_r
 
 @app.route("/api/company/<comp_id>", methods=['GET'])
 def get_company_reviews_ratings(comp_id):
@@ -77,7 +77,7 @@ def get_company_reviews_ratings(comp_id):
 		result.append(item)
 	json_r = jsonify(res=result)
 	print json_r
-	return ret_json(json_r)
+	return json_r
 
 @app.route("/api/user/<user_id>", methods=['GET'])
 def get_user_reviews_ratings(user_id):
@@ -90,7 +90,7 @@ def get_user_reviews_ratings(user_id):
 		result.append(item)
 	json_r = jsonify(res=result)
 	print json_r
-	return ret_json(json_r)
+	return json_r
 
 def calculate_overall_ratings(company_id):
 	con = clusterpoint_connect()
