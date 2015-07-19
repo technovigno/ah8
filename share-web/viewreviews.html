@@ -31,31 +31,12 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="initiate()">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <div id="fb-root"></div>
 <div id="fb-root"></div>
 <div id="fb-root"></div>
 
 <script>
-
-function initiate(user_id)
-{
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "li1184-50.members.linode.com:8081/api/user/" + user_id,
-    "method": "GET",
-    "headers": {
-      "content-type": "application/json"
-    }
-  }
-
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
-
-}
-
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -85,7 +66,7 @@ function initiate(user_id)
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      infoAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -145,13 +126,30 @@ function initiate(user_id)
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
+  function infoAPI() {
+    FB.api('/me', function(userinfo) {
       document.getElementById('user_name').innerHTML =
-        'Welcome, ' + response.name + '!';
+        'Welcome, ' + userinfo.name + '!';
+      inititate(userinfo.id);
     });
+  }
+
+  function initiate(user_id)
+  {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "li1184-50.members.linode.com:8081/api/user/" + user_id,
+      "method": "GET",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      console.log(response);
+    });
+
   }
 </script>
 
