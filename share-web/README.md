@@ -1,3 +1,18 @@
+
+
+Web components of the Sharenomy app. 
+
+   * Landing page
+   * Sign In Page
+   * Home Page
+   * Review Creation Page 
+
+
+------------
+
+Landing page was inspired and adapted from Grayscale.
+
+
 # [Start Bootstrap](http://startbootstrap.com/) - [Grayscale](http://startbootstrap.com/template-overviews/grayscale/)
 
 [Grayscale](http://startbootstrap.com/template-overviews/grayscale/) is a multipurpose, one page HTML theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). This template features various content sections and a Google Maps section with a custom map marker.
