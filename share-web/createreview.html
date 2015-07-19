@@ -282,7 +282,6 @@
             console.log('inside submit code area');
             e.preventDefault();
             captureOutputAndSend();
-            //document.location.href="/viewreviews.html";
         });
       });
 
@@ -318,6 +317,7 @@
 
         $.ajax(settings).done(function (response) {
           console.log(response);
+          document.location.href="/viewreviews.html";
         });
 
       }
