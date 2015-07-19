@@ -135,9 +135,7 @@
   $(document).ready(function () {
     $('#createform').on('submit', function(e) {
         e.preventDefault();
-        $.ajax({
-            captureOutputAndSend();
-        });
+        captureOutputAndSend();
     });
   });
 
