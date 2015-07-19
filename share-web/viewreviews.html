@@ -147,6 +147,7 @@
     }
 
     $.ajax(settings).done(function (data) {
+      console.log('My Reviews (' + data.res.length + ')');
       document.getElementById('myreviews').innerHTML =
             'My Reviews (' + data.res.length + ')';
     });
