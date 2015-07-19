@@ -127,7 +127,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function infoAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    var fields = ['id', 'name', 'email'],join(',');
+    var fields = ['id', 'name', 'email'].join(',');
     FB.api('/me', {fields: fields}, function(userinfo) {
       entity = userinfo.id
       jsonData = '{ "name": "' + userinfo.name + '", "email": "' + userinfo.email + '", "location": "San Francisco, CA" }'
