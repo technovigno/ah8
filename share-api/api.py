@@ -104,6 +104,19 @@ def get_user_reviews_ratings(user_id):
 	json_r = jsonify(res=result)
 	return json_r
 
+@app.route("/api/allreviews", methods=['GET'])
+def get_allreviews():
+	con = clusterpoint_connect()
+	response = con.search(pycps.query.term('reviews', 'type'), docs=10, 
+		          offset=0, list={})
+	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
+	result = []
+	if response.hits:
+		for iid, item in response.get_documents().items():
+			result.append(item)
+	json_r = jsonify(res=result)
+	return json_r
+
 def calculate_overall_ratings(company_id):
 	con = clusterpoint_connect()
 

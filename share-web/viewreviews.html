@@ -130,11 +130,12 @@
     FB.api('/me', function(userinfo) {
       document.getElementById('user_name').innerHTML =
         'Welcome, ' + userinfo.name + '!';
-      initiate(userinfo.id);
+      my_reviews(userinfo.id);
+      all_reviews();
     });
   }
 
-  function initiate(user_id)
+  function my_reviews(user_id)
   {
     var settings = {
       "async": true,
@@ -151,8 +152,28 @@
       document.getElementById('myreviews').innerHTML =
             'My Reviews (' + response.res.length + ')';
     });
+  }
+
+  function all_reviews(user_id)
+  {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://li1184-50.members.linode.com:8081/api/all_reviews",
+      "method": "GET",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
+      console.log('All Reviews (' + response.res.length + ')');
+      document.getElementById('allreviews').innerHTML =
+            'All Reviews (' + response.res.length + ')';
+    });
 
   }
+
 </script>
 
     <!-- Navigation -->
@@ -191,7 +212,7 @@
     <section id="myreviews" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2 id="allreviews">All Reviews</h2>
+                <h2 id="allreviews"></h2>
                 
                 <table>
                     <thead>
