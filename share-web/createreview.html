@@ -279,10 +279,10 @@
     <script>
        $(document).ready(function () {
         $('#createform').on('submit', function(e) {
-            console.log('inside submit code area')
+            console.log('inside submit code area');
             e.preventDefault();
             captureOutputAndSend();
-            document.location.href="/viewreviews.html"
+            //document.location.href="/viewreviews.html";
         });
       });
 
@@ -319,6 +319,7 @@
         $.ajax(settings).done(function (response) {
           console.log(response);
         });
+
       }
     </script>
 
