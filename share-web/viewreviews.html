@@ -146,10 +146,10 @@
       }
     }
 
-    $.ajax(settings).done(function (data) {
-      console.log('My Reviews (' + data.res.length + ')');
+    $.ajax(settings).done(function (response) {
+      console.log('My Reviews (' + response.res.length + ')');
       document.getElementById('myreviews').innerHTML =
-            'My Reviews (' + data.res.length + ')';
+            'My Reviews (' + response.res.length + ')';
     });
 
   }
