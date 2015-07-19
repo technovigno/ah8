@@ -53,6 +53,7 @@ def get_entity_data(entity_id):
 
 @app.route("/api/location/<location_id>", methods=['GET'])
 def get_location_reviews_ratings(location_id):
+	con = clusterpoint_connect()
 	response = con.search(pycps.query.term(location_id, 'location_id'), docs=10, 
 		        offset=0, list = {})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
@@ -63,6 +64,7 @@ def get_location_reviews_ratings(location_id):
 
 @app.route("/api/company/<comp_id>", methods=['GET'])
 def get_company_reviews_ratings(comp_id):
+	con = clusterpoint_connect()
 	response = con.search(pycps.query.term(comp_id, 'comp_id'), docs=10, 
 		          offset=0, list={})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
@@ -73,6 +75,7 @@ def get_company_reviews_ratings(comp_id):
 
 @app.route("/api/user/<user_id>", methods=['GET'])
 def get_user_reviews_ratings(user_id):
+	con = clusterpoint_connect()
 	response = con.search(pycps.query.term(user_id, 'user_id'), docs=10, 
 		           offset=0, list={})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
