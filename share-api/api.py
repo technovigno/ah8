@@ -2,6 +2,7 @@ from flask import Flask
 from flask import g
 from flask import Response
 from flask import request
+from flask import jsonify
 import json
 import pycps
 
@@ -15,6 +16,9 @@ def clusterpoint_connect():
 		                   '100881')
 	return con
 
+
+def ret_json(json_data):
+	return Response(response=json_data, status=200, mimetype="application/json")
 
 # Entities being user, companies, locations and reviews
 # Sample jsons:
@@ -42,28 +46,40 @@ def get_entity_data(entity_id):
 		response = con.retrieve(entity_id)
 	except pycps.APIError as e:
 		print e
-	return response
+	result = []
+	for iid, item in response.get_documents().items():
+		result.append(item)
+	return ret_json(result)
 
 @app.route("/api/location/<location_id>", methods=['GET'])
 def get_location_reviews_ratings(location_id):
-	response = con.search(pycps.query.term(location_id), docs=10, 
-		        offset=1, list={'location_id':'yes', 'user_id':'no', 'comp_id':'no'})
+	response = con.search(pycps.query.term(location_id, 'location_id'), docs=10, 
+		        offset=0, list = {})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
-	return response
+	result = []
+	for iid, item in response.get_documents().items():
+		result.append(item)
+	return ret_json(result)
 
 @app.route("/api/company/<comp_id>", methods=['GET'])
 def get_company_reviews_ratings(comp_id):
-	response = con.search(pycps.query.term(comp_id), docs=10, 
-		          offset=1, list={'comp_id':'yes', 'user_id':'no', 'location_id':'no'})
+	response = con.search(pycps.query.term(comp_id, 'comp_id'), docs=10, 
+		          offset=0, list={})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
-	return response	
+	result = []
+	for iid, item in response.get_documents().items():
+		result.append(item)
+	return ret_json(result)
 
 @app.route("/api/user/<user_id>", methods=['GET'])
 def get_user_reviews_ratings(user_id):
-	response = con.search(pycps.query.term(user_id), 
-		          docs=10, offset=1, list={'user_id':'yes', 'comp_id':'no', 'location_id':'no'})
+	response = con.search(pycps.query.term(user_id, 'user_id'), docs=10, 
+		           offset=0, list={})
 	print "Total hits: {0}, returned: {1}".format(response.hits, response.found)
-	return response	
+	result = []
+	for iid, item in response.get_documents().items():
+		result.append(item)
+	return ret_json(result)
 
 def calculate_overall_ratings(company_id):
 	con = clusterpoint_connect()
