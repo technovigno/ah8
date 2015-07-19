@@ -144,15 +144,7 @@
     var rating = $('input[name="optradio"]:checked').val();
     
     FB.api('/me', function(userinfo) {
-      jsonData = '{ 
-       "user_id": "' + userinfo.id + '", 
-       "comp_id": "' + company + '", 
-       "location_id": "San Francisco, CA", 
-       "review_text": "' + review_text + '", 
-       "rating": "' + rating + '", 
-       "hour_earning": "' + salary + '",
-       "role": "' + role + '" 
-      }';
+      jsonData = '{"user_id": "'+ userinfo.id +'", "comp_id": "' + company + '",  "location_id": "San Francisco, CA", "review_text": "' + review_text + '", "rating": "' + rating + '", "hour_earning": "' + salary + '", "role": "' + role + '" }';
       postUserJSONData(jsonData);
     });
   }
@@ -287,7 +279,7 @@
 
                     <div class="form-group"> 
                       <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn-default" onclick="captureOutputAndSend()">Submit</button>
+                        <button type="submit" onclick="captureOutputAndSend()">Submit</button>
                       </div>
                     </div>
                   </form>
