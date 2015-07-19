@@ -31,12 +31,30 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="initiate()">
 <div id="fb-root"></div>
 <div id="fb-root"></div>
 <div id="fb-root"></div>
 
 <script>
+
+function initiate()
+{
+var data = $.getJSON('http://li1184-50.members.linode.com:8081/api/user/tim', function(data) {
+    //data is the JSON string
+});
+
+
+for (var i = 0; i < data.length; i++) {
+    var object = data[i];
+    for (var property in object) {
+        alert('item ' + i + ': ' + property + '=' + object[property]);
+    }
+}
+
+}
+
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '506411436184850',
@@ -164,13 +182,13 @@
         <!-- /.container -->
     </nav>
                   
-
+    <header class="intro">
+        <div class="intro-body">
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Write a Review!</h2>
-                <p>Thanks for taking the time to share your experience with the world :)</p>
+                <h2>Reviews</h2>
                 
                 <table class="table table-hover">
                     <thead>
@@ -209,6 +227,8 @@
 
             </div>
         </div>
+    </div>
+    </header>   
     </section>
 
 
