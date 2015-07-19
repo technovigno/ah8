@@ -49,7 +49,7 @@ def get_entity_data(entity_id):
 	result = []
 	for iid, item in response.get_documents().items():
 		result.append(item)
-	json_r = jsonify(result)
+	json_r = jsonify(res=result)
 	print json_r
 	return ret_json(json_r)
 
@@ -62,7 +62,7 @@ def get_location_reviews_ratings(location_id):
 	result = []
 	for iid, item in response.get_documents().items():
 		result.append(item)
-	json_r = jsonify(result)
+	json_r = jsonify(res=result)
 	print json_r
 	return ret_json(json_r)
 
@@ -75,7 +75,7 @@ def get_company_reviews_ratings(comp_id):
 	result = []
 	for iid, item in response.get_documents().items():
 		result.append(item)
-	json_r = jsonify(result)
+	json_r = jsonify(res=result)
 	print json_r
 	return ret_json(json_r)
 
@@ -88,7 +88,7 @@ def get_user_reviews_ratings(user_id):
 	result = []
 	for iid, item in response.get_documents().items():
 		result.append(item)
-	json_r = jsonify(result)
+	json_r = jsonify(res=result)
 	print json_r
 	return ret_json(json_r)
 
