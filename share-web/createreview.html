@@ -279,6 +279,7 @@
     <script>
        $(document).ready(function () {
         $('#createform').on('submit', function(e) {
+            console.log('inside submit code area')
             e.preventDefault();
             captureOutputAndSend();
         });
