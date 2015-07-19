@@ -127,15 +127,15 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function infoAPI() {
     console.log('Welcome!  Fetching your information.... ');
-
-    FB.api('/me?scope=email', function(response) {
-      entity = response.id
-      jsonData = '{ "name": "' + response.name + '", "email": "' + response.email + '", "location": "San Francisco, CA" }'
+    var fields = ['id', 'name', 'email'],join(',')
+    FB.api('/me', {fields: fields}, function(userinfo) {
+      entity = userinfo.id
+      jsonData = '{ "name": "' + userinfo.name + '", "email": "' + userinfo.email + '", "location": "San Francisco, CA" }'
       postUserJSONData(jsonData, entity)
-      console.log(response);
-      console.log('Successful login for: ' + response.name);
+      console.log(userinfo);
+      console.log('Successful login for: ' + userinfo.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Thanks for logging in, ' + userinfo.name + '!';
     });
 
   }
