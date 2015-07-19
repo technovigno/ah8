@@ -33,14 +33,15 @@ def insert_entity_data(entity_id):
 		entity_id = uuid.uuid4()
 	entity_id = str(entity_id).lower()
 	entity_id = entity_id.replace('_', ' ')
-	json_data = json.dumps(request.data)
+	json_data = json.loads("{ entity_id: " + json_data + "}")
+	print json_data
 	try:
 		con = clusterpoint_connect()
 		try:
 			response = con.retrieve(entity_id)
+			con.update(json_data)
 		except pycps.APIError:
-			con.insert({entity_id: json_data})
-		con.update({entity_id: json_data})
+			con.insert(json_data)
 	except pycps.APIError as e:
 		print e
 
