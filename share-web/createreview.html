@@ -132,6 +132,15 @@
     });
   }
 
+  $(document).ready(function () {
+    $('#createform').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            captureOutputAndSend();
+        });
+    });
+  });
+
   function captureOutputAndSend(){
     var index_sel1= document.getElementById('sel1').options.selectedIndex;
     var index_sel2= document.getElementById('sel2').options.selectedIndex;
@@ -192,19 +201,10 @@
                     </li>
                     <li>
                         <a id="user_name"></a>
-                    </li>  
-                   
+                    </li>    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                <li>
-                     <a id="user_name"></a>
-                </li>
-                </ul>
-            </div> 
-
         </div>
         <!-- /.container -->
     </nav>
@@ -217,7 +217,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Write a Review!</h2>
                 <p>Thanks for taking the time to share your experience with the world :)</p>
-                  <form class="form-horizontal" role="form">
+                  <form id="createform" class="form-horizontal" role="form">
                     <div class="form-group">
 
                     <div class="form-group">
@@ -275,11 +275,13 @@
                         <label class="radio-inline"><input type="radio" name="optradio" value='Meh!'>Meh!!</label>
                         <label class="radio-inline"><input type="radio" name="optradio" value='Boo - go somewhere else!'>Boo - go somewhere else!</label>
                       </div>
+                    </div>  
+                    <div class="form-group"> 
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn-default" onclick="">Submit</button>
+                      </div>
                     </div>
                   </form>
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" onclick="captureOutputAndSend()">Submit</button>
-                  </div>
             </div>
         </div>
 
