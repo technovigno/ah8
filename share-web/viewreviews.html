@@ -35,7 +35,10 @@
 <div id="fb-root"></div>
 <div id="fb-root"></div>
 <div id="fb-root"></div>
-
+<script src="http://json2html.com/js/json2html.js"></script>
+<script src="http://json2html.com/js/jquery.json2html.js"></script>
+<script src="bootstrap-table-master/dist/bootstrap-table.js"></script>
+<script src="sortable-0.5.0/js/sortable.min.js"></script>
 <script>
 
   window.fbAsyncInit = function() {
@@ -137,10 +140,11 @@
 
   function my_reviews(user_id)
   {
+    url = "http://li1184-50.members.linode.com:8081/api/user/" + user_id;
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://li1184-50.members.linode.com:8081/api/user/" + user_id,
+      "url": url,
       "method": "GET",
       "headers": {
         "content-type": "application/json"
@@ -151,15 +155,33 @@
       console.log('My Reviews (' + response.res.length + ')');
       document.getElementById('myreviews').innerHTML =
             'My Reviews (' + response.res.length + ')';
+
+      $.getJSON(url, function(data){
+        console.log(data);
+        var tranform = {
+          tag: 'tr',
+          children: [
+          { "tag": "td", "html": "${company_id}"},
+          { "tag": "td", "html": "${role}"},
+          { "tag": "td", "html": "${hour_earning}"},
+          { "tag": "td", "html": "${location_id}"},
+          { "tag": "td", "html": "${review_text}"},
+          { "tag": "td", "html": "${rating}"}
+          ]
+        };
+        $(' #mytable tbody tr ').remove();
+        $(' #mytable > tbody ').json2html(data, transform);
+      });
     });
   }
 
-  function all_reviews(user_id)
+  function all_reviews()
   {
+    url = "http://li1184-50.members.linode.com:8081/api/allreviews";
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://li1184-50.members.linode.com:8081/api/allreviews",
+      "url": url,
       "method": "GET",
       "headers": {
         "content-type": "application/json"
@@ -170,6 +192,23 @@
       console.log('All Reviews (' + response.res.length + ')');
       document.getElementById('allreviews').innerHTML =
             'All Reviews (' + response.res.length + ')';
+
+      $.getJSON(url, function(data){
+        console.log(data);
+        var tranform = {
+          tag: 'tr',
+          children: [
+          { "tag": "td", "html": "${company_id}"},
+          { "tag": "td", "html": "${role}"},
+          { "tag": "td", "html": "${hour_earning}"},
+          { "tag": "td", "html": "${location_id}"},
+          { "tag": "td", "html": "${review_text}"},
+          { "tag": "td", "html": "${rating}"}
+          ]
+        };
+        $(' #alltable tbody tr ').remove();
+        $(' #alltable > tbody ').json2html(data, transform);
+      });
     });
 
   }
@@ -206,6 +245,20 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2 id="myreviews"></h2>
+                  <table id="mytable" class="sortable-theme-bootstrap" width="100%" data-sortable>
+                      <thead>
+                        <tr>
+                          <th>Company</th>
+                          <th>Role</th>
+                          <th>Hourly Earning</th>
+                          <th>Location</th>
+                          <th>Reviews</th>
+                          <th>Like it?</th>        
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                  </table>
             </div>
         </div>
     </section>
@@ -214,40 +267,20 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2 id="allreviews"></h2>
                 
-                <table>
+                <table id="alltable" class="sortable-theme-bootstrap" width="100%" data-sortable>
                     <thead>
                       <tr>
                         <th>Company</th>
                         <th>Role</th>
-                        <th>Salary</th>
-                        <th>Comments</th>
-                        <th>Rating</th>        
+                        <th>Hourly Earning</th>
+                        <th>Location</th>
+                        <th>Reviews</th>
+                        <th>Like it?</th>        
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Uber</td>
-                        <td>Driver</td>
-                        <td>25</td>
-                        <td>I work full-time elsewhere and work 10 hours a week over the weekend with Uber! I love driving and enjoy my work. Great way to make extra bucks over the weekend.</td>
-                        <td>Awesome company!</td>
-                      </tr>
-                      <tr>
-                        <td>Lyft</td>
-                        <td>Driver</td>
-                        <td>35</td>
-                        <td>I work full-time with Lyft I get paid even when I'm not driving, so it's pretty great.</td>
-                        <td>Pretty good place</td>                        
-                      </tr>
-                      <tr>
-                        <td>Uber</td>
-                        <td>Driver</td>
-                        <td>25</td>
-                        <td>I work full-time elsewhere and work 10 hours a week over the weekend with Uber! I love driving and enjoy my work. Great way to make extra bucks over the weekend.</td>
-                        <td>Awesome company!</td>                    
-                      </tr>
                     </tbody>
-                  </table>
+                </table>
 
             </div>
         </div>
